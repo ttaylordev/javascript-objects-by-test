@@ -14,13 +14,17 @@ Functions as Objects
 
   describe('Can be Literals', function(){
       it('is made up of curly braces', function(){
-          expect(makeEmptyObject()).toEqual({});
+          expect(
+            makeEmptyObject()
+          ).toEqual(
+            {}
+          );
       })
 
   })
 
   it('Can be made with "new Object"', function(){
-    expect(makeEmptyObjectNew).toEqual(jasmine.Any(Object))
+    expect(makeEmptyObjectNew()).toEqual({})
   })
 
   describe('Use key value pairs', function(){
@@ -40,6 +44,9 @@ Functions as Objects
       )
     })
 
+
+
+
     it('can have values that are strings, like "We are the champions"', function(){
       expect(
         makeStringObject()
@@ -47,6 +54,10 @@ Functions as Objects
         {stringKey: "We are the champions"}
       )
     })
+
+
+
+
 
     it('can have values that are booleans, like true', function(){
       expect(
@@ -60,7 +71,7 @@ Functions as Objects
       expect(
         makeObjectObject()
       ).toEqual(
-        {objectKey: {innerObject: "This works"}}
+        {objectKey: {text: "This works"}}
       )
     })
 
@@ -73,8 +84,10 @@ Functions as Objects
     })
 
     it('can have values that are functions, like sayHi', function(){
+      var resultObj = makeFunctionObject()
+
       expect(
-        makeFunctionObject().sayHi()
+        resultObj.sayHi()
       ).toEqual(
         "Hi"
       )
@@ -112,6 +125,7 @@ Functions as Objects
 
   describe('Can be accessed with dot property', function(){
     var website;
+
     beforeEach(function(){
         website = {
           url: 'www.worldwideweb.com',
@@ -182,6 +196,7 @@ Functions as Objects
     }).toEqual({
       second: 'second',
       third: 'third',
+      first: 'first'
     })
   })
 
@@ -191,20 +206,20 @@ Functions as Objects
         first: 'first',
         second: 'second',
         third: 'third'
-      }).toBe({
+      })
+    ).toEqual({
         first: 'first',
         third: 'third'
-      })
-    )
+    })
   })
 
   it('Can be looped through with for(var in obj)', function(){
     var myObj = {
-      first: "first",
-      second: "second",
-      third: "third"
+      first: "first Value",
+      second: "second Value",
+      third: "third Value"
     }
-    expect(getValuesFromObject(myObj)).toEqual(["first", "second", "third"])
+    expect(getValuesFromObject(myObj)).toEqual(["first Value", "second Value", "third Value"])
   })
 
   describe('Are not functions, but functions are objects', function(){
